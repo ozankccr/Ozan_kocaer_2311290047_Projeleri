@@ -22,6 +22,7 @@ public class ozan_proje16 {
                     sayac++;
                 }
             }
+                System.out.println(metin);
             return sayac;
         }
     }
