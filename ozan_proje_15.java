@@ -1,25 +1,17 @@
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-import java.util.Scanner;
 
+import java.util.Scanner;
 public class ozan_proje_15 {
-        public static void main(String[] args) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Denklemi giriniz: ");
-            String denklem = scanner.nextLine();
-            try {
-                double x = hesaplaX(denklem);
-                System.out.println("x = " + x);
-            } catch (ScriptException e) {
-                System.err.println("Geçersiz denklem. Lütfen doğru bir denklem giriniz.");
-            }
-            scanner.close();
-        }
-        private static double hesaplaX(String denklem) throws ScriptException {
-            ScriptEngineManager manager = new ScriptEngineManager();
-            ScriptEngine engine = manager.getEngineByName("js");
-            String xIleDegistirilmisDenklem = denklem.replaceAll("x", "0");
-            Object result = engine.eval(xIleDegistirilmisDenklem);
-            return Double.parseDouble(result.toString());}
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Denklemi girin (örneğin, ax + b = c): ");
+        String denklem = scanner.nextLine();
+        double a = Double.parseDouble(denklem.split("x")[0].trim());
+        double b = Double.parseDouble(denklem.split("x")[1].split("=")[0].trim());
+        double c = Double.parseDouble(denklem.split("=")[1].trim());
+        double x = (c - b) / a;
+        System.out.println("Denklemin çözümü: x = " + x);
+        System.out.println("Denklemin sonucu: " + (a * x + b));
+
+        scanner.close();
+    }
 }
